@@ -18,11 +18,9 @@ COPY --from=download2 /repositories/sd-webui-segment-anything /stable-diffusion-
 COPY --from=download2 /repositories/sd-webui-replacer /stable-diffusion-webui/repositories/sd-webui-replacer
 
 COPY --from=download2 /lazymix.safetensors /lazymix.safetensors
-# RUN pip install diskcache pillow-avif-plugin
-# RUN cd /stable-diffusion-webui && python cache.py --use-cpu=all --ckpt /lazymix.safetensors
+RUN pip install diskcache pillow-avif-plugin
+RUN cd /stable-diffusion-webui && python cache.py --use-cpu=all --ckpt /lazymix.safetensors
 COPY config.json /stable-diffusion-webui/config.json
 COPY ui_config.json /stable-diffusion-webui/ui_config.json
-ADD src .
-# Set permissions and specify the command to run
-RUN chmod +x /start.sh
-CMD /start.sh
+COPY src/rp_handler.py ./rp_handler.py
+COPY src/start.sh ./start.sh
