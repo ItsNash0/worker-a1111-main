@@ -20,3 +20,4 @@ COPY --from=download2 /repositories/sd-webui-replacer /stable-diffusion-webui/re
 COPY --from=download2 /lazymix.safetensors /lazymix.safetensors
 RUN pip install diskcache pillow-avif-plugin
 RUN cd /stable-diffusion-webui && python cache.py --use-cpu=all --ckpt /lazymix.safetensors
+COPY src/rp_handler.py .
