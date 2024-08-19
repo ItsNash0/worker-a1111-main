@@ -11,7 +11,6 @@ RUN wget -q -O /repositories/sd-webui-segment-anything/models/sam/sam_hq_vit_l.p
 
 FROM runpod/ai-api-a1111:0.2.1
 
-ADD src .
 ENV STABLE_DIFFUSION_SHA="c19d04436496ab29ddca4758a792831ae41b31de"
 RUN cd stable-diffusion-webui &&  git fetch origin ${STABLE_DIFFUSION_SHA} --depth=1 && git reset --hard ${STABLE_DIFFUSION_SHA}
 
@@ -23,4 +22,7 @@ COPY --from=download2 /lazymix.safetensors /lazymix.safetensors
 # RUN cd /stable-diffusion-webui && python cache.py --use-cpu=all --ckpt /lazymix.safetensors
 COPY config.json /stable-diffusion-webui/config.json
 COPY ui_config.json /stable-diffusion-webui/ui_config.json
-
+ADD src .
+# Set permissions and specify the command to run
+RUN chmod +x /start.sh
+CMD /start.sh
