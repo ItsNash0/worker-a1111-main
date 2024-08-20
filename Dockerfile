@@ -23,4 +23,3 @@ RUN cd /stable-diffusion-webui && python cache.py --use-cpu=all --ckpt /lazymix.
 COPY config.json /stable-diffusion-webui/config.json
 COPY ui_config.json /stable-diffusion-webui/ui_config.json
 COPY src/rp_handler.py ./rp_handler.py
-COPY src/start.sh ./start.sh
