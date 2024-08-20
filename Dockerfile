@@ -8,6 +8,7 @@ RUN . /clone.sh sd-webui-replacer https://github.com/light-and-ray/sd-webui-repl
 RUN apk add --no-cache wget
 RUN wget -q -O /lazymix.safetensors https://civitai.com/api/download/models/302254
 RUN wget -q -O /repositories/sd-webui-segment-anything/models/sam/sam_hq_vit_l.pth https://huggingface.co/lkeab/hq-sam/resolve/main/sam_hq_vit_l.pth
+RUN wget -q -O /repositories/sd-webui-segment-anything/models/grounding-dino/groundingdino_swint_ogc.pth https://huggingface.co/ShilongLiu/GroundingDINO/resolve/main/groundingdino_swint_ogc.pth
 
 FROM runpod/ai-api-a1111:0.2.1
 
